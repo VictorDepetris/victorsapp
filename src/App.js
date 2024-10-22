@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 
 // Sample data for projects
 const projectsData = [
@@ -58,18 +59,31 @@ function ProjectCard({ project }) {
   };
 
   return (
-    <div className="project-card">
-      <h3>{project.name}</h3>
-      <p>Authorized Users: {project.users.join(', ') || 'None'}</p>
-      <p>HWSet1: {project.hwSet1}/100</p>
-      <p>HWSet2: {project.hwSet2}/100</p>
-      <button onClick={() => alert('Enter Quantity')} className="button">Enter Qty</button>
-      <button onClick={() => alert('Check In')} className="button">Check In</button>
-      <button onClick={() => alert('Check Out')} className="button">Check Out</button>
-      <button onClick={handleJoinLeave} className="button">
-        {isMember ? 'Leave' : 'Join'}
-      </button>
-    </div>
+    <Card className="project-card" variant="outlined">
+      <CardContent>
+        <Typography variant="h6">{project.name}</Typography>
+        <Typography variant="body2">Authorized Users: {project.users.join(', ') || 'None'}</Typography>
+        <Typography variant="body2">HWSet1: {project.hwSet1}/100</Typography>
+        <Typography variant="body2">HWSet2: {project.hwSet2}/100</Typography>
+        <Button variant="contained" onClick={() => alert('Enter Quantity')} style={{ margin: '5px' }}>
+          Enter Qty
+        </Button>
+        <Button variant="contained" onClick={() => alert('Check In')} style={{ margin: '5px' }}>
+          Check In
+        </Button>
+        <Button variant="contained" onClick={() => alert('Check Out')} style={{ margin: '5px' }}>
+          Check Out
+        </Button>
+        <Button
+          variant="contained"
+          color={isMember ? 'secondary' : 'primary'}
+          onClick={handleJoinLeave}
+          style={{ margin: '5px' }}
+        >
+          {isMember ? 'Leave' : 'Join'}
+        </Button>
+      </CardContent>
+    </Card>
   );
 }
 
